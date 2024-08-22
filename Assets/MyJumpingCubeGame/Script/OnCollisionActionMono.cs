@@ -18,5 +18,15 @@ public class OnCollisionActionMono : MonoBehaviour
         m_onEnterCollision.Invoke();
 
     }
+    public void OnCollisionStay(Collision collision)
+    {
+        m_onEnterCollision.Invoke();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        m_onEnterCollision.Invoke();
+
+    }
 
 }

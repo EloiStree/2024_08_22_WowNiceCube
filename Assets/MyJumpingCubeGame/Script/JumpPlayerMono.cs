@@ -9,18 +9,30 @@ public class JumpPlayerMono : MonoBehaviour
     public Rigidbody m_rigidbodyToAffect;
     public float m_forcePower = 10;
     public Transform m_rayDirection;
-    void Start()
-    {
-        Debug.Log("Hello");
-    }
 
 
+    public float m_cooldownToJump = 0.5f;
+    public float m_currentCooldownTimer = 1;
+    
     public LayerMask m_whatToConsiderAsGround;
     public float m_distanceOfGroundToJump = 0.5f;
 
     public bool m_useRaycast = false;
+
+    public void Update()
+    {
+        m_currentCooldownTimer -= Time.deltaTime;
+
+
+    }
+
     public  void NeedToJump()
     {
+        if (m_currentCooldownTimer > 0)
+            return;
+
+        m_currentCooldownTimer = m_cooldownToJump;
+
         if (m_useRaycast)
         {
             RaycastHit hit;
